@@ -36,7 +36,7 @@ export default class MediEcoBookStackQueryActionsApi {
         const linkToBookHtml = "<div><a target='_blank' href='https://wissen.medi.ch/books/" + book.slug + "'>...öffne in wissen.medi.ch</a></div>";
         const bookHtml = await this.#handleRequest(options);
 
-        return [linkToBookHtml, bookHtml].join();
+        return [linkToBookHtml, bookHtml].join("");
     }
 
     /**
@@ -71,7 +71,12 @@ export default class MediEcoBookStackQueryActionsApi {
 
         console.log(shelve)
 
-        let html = "";
+        //todo static side with custom elements
+        let html = `<div 
+                        style="grid-template-columns: 1fr 1fr 1fr;
+                        display: grid;
+                        grid-column-gap: 24px;
+                        grid-row-gap: 24px">`;
 
         for (const book of shelve.books) {
             const bookId = book.id;
@@ -79,24 +84,46 @@ export default class MediEcoBookStackQueryActionsApi {
             html += bookCoverHtml;
         }
 
+        html +=  `</div>`
         return html;
     }
 
     async readBookCoverHtml({bookId}) {
         const book = await (this.readBook({bookId}));
 
-       //todo
-        return `<a href="https://wissen.medi.ch/books/${book.slug}" class="grid-card" data-eclassName-type="book"
-           data-entity-id="15">
-            <div class="bg-book featured-className-container-wrap">
-                <div class="featured-image-coclassNameer"
-                     style="background-image: url('${book.cover.url}')">
+        return `<style>
+                  a:hover {
+                    color: #666;
+                    box-shadow: 0 2px 6px -1px rgb(0 0 0 / 20%);
+                  }
+                </style>
+                <a href="https://wissen.medi.ch/books/${book.slug}" 
+                     style="font-family: Univers57, Arial, sans-serif;
+                            text-decoration: none;
+                            display: flex;
+                            flex-direction: column;
+                            border: 1px solid #ddd;
+                            margin-bottom: 24px;
+                            border-radius: 4px;
+                            overflow: hidden;
+                            min-width: 100px;
+                            color: #444;
+                            transition: border-color ease-in-out 120ms,box-shadow ease-in-out 120ms">
+            <div>
+                <div style="position: relative;
+                            overflow: hidden;
+                            min-height: 140px;
+                            background-size: cover;
+                            background-position: 50% 50%;
+                            transition: opacity ease-in-out 240ms;
+                            background-image: url('${book.cover.url}')">
                 </div>
             </div>
-            <div class="grid-card-content"><h2 class="text-limit-lines-2">${book.name}</h2>
-                <p class="text-muted">${book.description}</p>
+            <div style="padding: 24px">
+                <h2 style="font-size: 12px">${book.name}</h2>
+                <p style="font-size: 10px">${book.description}</p>
             </div>
-    </a>`
+            </a>`
     }
 
     async #handleRequest(options) {

@@ -16,4 +16,3 @@ if(actionEndpoint) {
     bookstackElement.innerHTML = result;
     document.body.appendChild(bookstackElement);
 }
-
