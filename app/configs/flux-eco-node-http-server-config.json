@@ -1,0 +1,65 @@
+{
+  "server": {
+    "port": 8500,
+    "host": "localhost"
+  },
+  "policies": null,
+  "routes": {
+    "static": {
+      "/static": {
+        "/favicon.ico": {
+          "contentType": "image/x-icon"
+        },
+        "/index.html": {
+          "contentType": "text/html"
+        },
+        "/main.mjs": {
+          "contentType": "application/javascript"
+        }
+      }
+    },
+    "api": {
+      "/api/readPageHtml/pageId/{pageId}": {
+        "Content-Type": "text/html",
+        "actionType": "requestHandler"
+      },
+      "/api/readBookHtml/bookId/{bookId}": {
+        "Content-Type": "text/html",
+        "actionType": "requestHandler"
+      },
+      "/api/readShelveHtml/shelveId/{shelveId}": {
+        "Content-Type": "text/html",
+        "actionType": "requestHandler"
+      }
+    }
+  },
+  "actions": [
+    {
+      "actionName": "readPageHtml",
+      "route": "/api/readPageHtml/pageId/{pageId}",
+      "parameters": {
+        "pageId": {
+          "type": "number"
+        }
+      }
+    },
+    {
+      "actionName": "readBookHtml",
+      "route": "/api/readBookHtml/bookId/{bookId}",
+      "parameters": {
+        "bookId": {
+          "type": "number"
+        }
+      }
+    },
+    {
+      "actionName": "readShelveHtml",
+      "route": "/api/readShelveHtml/shelveId/{shelveId}",
+      "parameters": {
+        "shelveId": {
+          "type": "number"
+        }
+      }
+    }
+  ]
+}
