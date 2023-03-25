@@ -31,7 +31,7 @@ export default class MediEcoBookStackQueryActionsApi {
         url = url.replace("{" + endpoints.readBookExportHtml.parameters.id.name + "}", bookId);
 
         const options = this.#createOptions(server, url, token)
-        const book = this.readBook({bookId});
+        const book = await(this.readBook({bookId}));
 
         const linkToBookHtml = "<div><a target='_blank' href='https://wissen.medi.ch/books/" + book.slug + "'>...öffne in wissen.medi.ch</a></div>";
         const bookHtml = await this.#handleRequest(options);
@@ -69,8 +69,6 @@ export default class MediEcoBookStackQueryActionsApi {
     async readShelveHtml({shelveId}) {
         const shelve = await (this.readShelve({shelveId}));
 
-        console.log(shelve)
-
         //todo static side with custom elements
         let html = `<div 
                         style="grid-template-columns: 1fr 1fr 1fr;
@@ -97,7 +95,7 @@ export default class MediEcoBookStackQueryActionsApi {
                     box-shadow: 0 2px 6px -1px rgb(0 0 0 / 20%);
                   }
                 </style>
-                <a href="https://wissen.medi.ch/books/${book.slug}" 
+                <a target='_blank' href="https://wissen.medi.ch/books/${book.slug}" 
                      style="font-family: Univers57, Arial, sans-serif;
                             text-decoration: none;
                             display: flex;

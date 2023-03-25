@@ -1,7 +1,7 @@
 services:
   medi-eco-book-stack-query-actions:
-    image: fluxms/medi-eco-book-stack-query-actions:v2022-03-22-1
+    image: fluxms/medi-eco-book-stack-query-actions:v2022-03-24-4
     environment:
-      - BOOK_STACK_TOKEN="abc:abc"
+      - BOOK_STACK_TOKEN="iQl2BF4s33IgrBrRDxNEuX1j8UthdxeL:aBTU3Mhe89LWHrLfhFwsNZcHVwMP75fJ"
     ports:
-      - 8500:8500
+      - 127.1.2.8:8500:8500
