@@ -70,7 +70,9 @@ export default class MediEcoBookStackQueryActionsApi {
         const shelve = await (this.readShelve({shelveId}));
 
         //todo static side with custom elements
-        let html = `<div 
+        let html = `<div style="max-width: 940px;
+                                margin: auto;">
+                    <div 
                         style="grid-template-columns: 1fr 1fr 1fr;
                         display: grid;
                         grid-column-gap: 24px;
@@ -82,7 +84,7 @@ export default class MediEcoBookStackQueryActionsApi {
             html += bookCoverHtml;
         }
 
-        html +=  `</div>`
+        html +=  `</div></div>`
         return html;
     }
 
