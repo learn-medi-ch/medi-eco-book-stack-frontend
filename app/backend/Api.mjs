@@ -16,9 +16,9 @@ export default class Api {
     }
 
     async readPageHtml({pageId}) {
-        const {server, endpoints, token} = this.#config.settings.boockStack;
-        let url = endpoints.readPageExportHtml.path;
-        url = url.replace("{" + endpoints.readPageExportHtml.parameters.id.name + "}", pageId);
+        const {server, actions, token} = this.#config.boockStack;
+        let url = actions.readPageExportHtml.path;
+        url = url.replace("{" + actions.readPageExportHtml.parameters.id.name + "}", pageId);
 
         const options = this.#createOptions(server, url, token)
 
@@ -26,9 +26,9 @@ export default class Api {
     }
 
     async readBookHtml({bookId}) {
-        const {server, endpoints, token} = this.#config.settings.boockStack;
-        let url = endpoints.readBookExportHtml.path;
-        url = url.replace("{" + endpoints.readBookExportHtml.parameters.id.name + "}", bookId);
+        const {server, actions, token} = this.#config.boockStack;
+        let url = actions.readBookExportHtml.path;
+        url = url.replace("{" + actions.readBookExportHtml.parameters.id.name + "}", bookId);
 
         const options = this.#createOptions(server, url, token)
         const book = await(this.readBook({bookId}));
@@ -44,9 +44,9 @@ export default class Api {
      * @return {Promise<{Book}>}
      */
     async readBook({bookId}) {
-        const {server, endpoints, token} = this.#config.settings.boockStack;
-        let url = endpoints.readBook.path;
-        url = url.replace("{" + endpoints.readBook.parameters.id.name + "}", bookId);
+        const {server, actions, token} = this.#config.boockStack;
+        let url = actions.readBook.path;
+        url = url.replace("{" + actions.readBook.parameters.id.name + "}", bookId);
 
         const options = this.#createOptions(server, url, token)
         return await (JSON.parse(await this.#handleRequest(options)));
@@ -57,9 +57,9 @@ export default class Api {
      * @return {Promise<{Shelve}>}
      */
     async readShelve({shelveId}) {
-        const {server, endpoints, token} = this.#config.settings.boockStack;
-        let url = endpoints.readShelve.path;
-        url = url.replace("{" + endpoints.readShelve.parameters.id.name + "}", shelveId);
+        const {server, actions, token} = this.#config.boockStack;
+        let url = actions.readShelve.path;
+        url = url.replace("{" + actions.readShelve.parameters.id.name + "}", shelveId);
 
         const options = this.#createOptions(server, url, token)
         return await (JSON.parse(await this.#handleRequest(options)));
