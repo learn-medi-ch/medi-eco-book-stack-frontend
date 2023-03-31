@@ -52,8 +52,8 @@ const resolveRefs = (object, objectPath) => {
 }
 
 async function app() {
-    const backendConfig = readFile("./configs/backend-config.json");
-    const httpServerConfig = readFile("./configs/http-server-config.json");
+    const backendConfig = readFile("./configs/backend-settings.json");
+    const httpServerConfig = readFile("./configs/http-server-settings.json");
     const server = await FluxEcoNodeHttpServer.new(
         httpServerConfig,
         Api.new(backendConfig)

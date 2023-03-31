@@ -3,20 +3,21 @@ import https from "node:https";
 export default class Api {
 
     /**
-     * @type {MediEcoBookStackQueryActionsConfig}
+     * @type {MediEcoBackendSettings}
      */
-    #config;
+    #settings;
 
-    constructor(config) {
-        this.#config = this.#resolveEnvVariables(config)
+    constructor(settings) {
+        this.#settings = this.#resolveEnvVariables(settings)
     }
 
-    static new(config) {
-        return new Api(config)
+    static new(settings) {
+        return new Api(settings)
     }
 
     async readPageHtml({pageId}) {
-        const {server, actions, token} = this.#config.boockStack;
+        const {server, token} = this.#settings.bookStackSettings;
+        const {actions} = this.#settings.bookStackDefinition;
         let url = actions.readPageExportHtml.path;
         url = url.replace("{" + actions.readPageExportHtml.parameters.id.name + "}", pageId);
 
@@ -26,7 +27,8 @@ export default class Api {
     }
 
     async readBookHtml({bookId}) {
-        const {server, actions, token} = this.#config.boockStack;
+        const {server, token} = this.#settings.bookStackSettings;
+        const {actions} = this.#settings.bookStackDefinition;
         let url = actions.readBookExportHtml.path;
         url = url.replace("{" + actions.readBookExportHtml.parameters.id.name + "}", bookId);
 
@@ -44,7 +46,8 @@ export default class Api {
      * @return {Promise<{Book}>}
      */
     async readBook({bookId}) {
-        const {server, actions, token} = this.#config.boockStack;
+        const {server, token} = this.#settings.bookStackSettings;
+        const {actions} = this.#settings.bookStackDefinition;
         let url = actions.readBook.path;
         url = url.replace("{" + actions.readBook.parameters.id.name + "}", bookId);
 
@@ -57,7 +60,8 @@ export default class Api {
      * @return {Promise<{Shelve}>}
      */
     async readShelve({shelveId}) {
-        const {server, actions, token} = this.#config.boockStack;
+        const {server, token} = this.#settings.bookStackSettings;
+        const {actions} = this.#settings.bookStackDefinition;
         let url = actions.readShelve.path;
         url = url.replace("{" + actions.readShelve.parameters.id.name + "}", shelveId);
 

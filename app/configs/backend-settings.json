@@ -1,10 +1,12 @@
 {
-  "boockStack": {
+  "bookStackSettings": {
     "server": {
       "hostname": "wissen.medi.ch",
       "port": 443
     },
-    "token": "${BOOK_STACK_TOKEN}",
+    "token": "${BOOK_STACK_TOKEN}"
+  },
+  "bookStackDefinition": {
     "actions": {
       "readPageExportHtml": {
         "path": "/api/pages/{id}/export/html",

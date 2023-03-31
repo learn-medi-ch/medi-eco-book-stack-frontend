@@ -19,7 +19,7 @@
   },
   "backend": {
     "actions": {
-      "$ref": "../schemas/backend-schema.json#/actions"
+      "$ref": "./backend-definition.json#/actions"
     }
   }
 }
