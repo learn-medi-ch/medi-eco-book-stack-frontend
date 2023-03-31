@@ -1,9 +1,12 @@
 /*
 !app
 app/*
-!app/frontend
-!app/bin
 !app/backend
+!app/bin
+!app/configs
+!app/frontend
+!app/schemas
+!app/types
 !app/app.mjs
 !app/docker-entrypoint.sh
 !build

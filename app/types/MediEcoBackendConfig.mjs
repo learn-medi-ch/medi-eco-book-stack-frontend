@@ -1,22 +1,12 @@
 /**
- * @typedef {Object} MediEcoBookStackQueryActionsConfig
- * @property {Settings} settings
- */
-
-/**
- * @typedef {Object} Settings
- * @property {BookstackSettings} boockStack
- */
-
-/**
- * @typedef {Object} BookstackSettings
+ * @typedef {Object} MediEcoBackendConfig
  * @property {Object} server
  * @property {string} token
- * @property {Endpoints} endpoints
+ * @property {Actions} actions
  */
 
 /**
- * @typedef {Object} Endpoints
+ * @typedef {Object} Actions
  * @property {{headers:{name:string}}} authenticate
  * @property {{path:string,headers:{name:string, type:string},parameters:{id:object}}} readPageExportHtml
  * @property {{path:string,headers:{name:string, type:string},parameters:{id:object}}} readBookExportHtml

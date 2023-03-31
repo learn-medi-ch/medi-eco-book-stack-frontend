@@ -1,0 +1,47 @@
+{
+  "boockStack": {
+    "server": {
+      "hostname": "wissen.medi.ch",
+      "port": 443
+    },
+    "token": "${BOOK_STACK_TOKEN}",
+    "actions": {
+      "readPageExportHtml": {
+        "path": "/api/pages/{id}/export/html",
+        "parameters": {
+          "id": {
+            "name": "id",
+            "type": "number"
+          }
+        }
+      },
+      "readBookExportHtml": {
+        "path": "/api/books/{id}/export/html",
+        "parameters": {
+          "id": {
+            "name": "id",
+            "type": "number"
+          }
+        }
+      },
+      "readBook": {
+        "path": "/api/books/{id}",
+        "parameters": {
+          "id": {
+            "name": "id",
+            "type": "number"
+          }
+        }
+      },
+      "readShelve": {
+        "path": "/api/shelves/{id}",
+        "parameters": {
+          "id": {
+            "name": "id",
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
