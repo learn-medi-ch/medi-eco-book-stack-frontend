@@ -1,6 +1,6 @@
 import https from "node:https";
 
-export default class MediEcoBookStackQueryActionsApi {
+export default class Api {
 
     /**
      * @type {MediEcoBookStackQueryActionsConfig}
@@ -12,7 +12,7 @@ export default class MediEcoBookStackQueryActionsApi {
     }
 
     static new(config) {
-        return new MediEcoBookStackQueryActionsApi(config)
+        return new Api(config)
     }
 
     async readPageHtml({pageId}) {

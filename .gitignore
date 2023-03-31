@@ -1,11 +1,9 @@
 /*
 !app
 app/*
-!app/api
+!app/frontend
 !app/bin
-!app/configs
-!app/static
-!app/types
+!app/backend
 !app/app.mjs
 !app/docker-entrypoint.sh
 !build
