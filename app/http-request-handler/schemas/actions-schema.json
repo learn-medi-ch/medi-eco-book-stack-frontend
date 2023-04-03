@@ -1,0 +1,35 @@
+{
+  "readPageHtml": {
+    "path": "/api/flux-ilias-rest-api-proxy/medi-wissen/readPageHtml/pageId/{pageId}",
+    "parameters": {
+      "pageId": {
+        "type": "number"
+      }
+    },
+    "response": {
+      "content-type": "text/html"
+    }
+  },
+  "readBookHtml": {
+    "path": "/api/flux-ilias-rest-api-proxy/medi-wissen/readBookHtml/bookId/{bookId}",
+    "parameters": {
+      "bookId": {
+        "type": "number"
+      }
+    },
+    "response": {
+      "content-type": "text/html"
+    }
+  },
+  "readShelveHtml": {
+    "path": "/api/flux-ilias-rest-api-proxy/medi-wissen/readShelveHtml/shelveId/{shelveId}",
+    "parameters": {
+      "shelveId": {
+        "type": "number"
+      }
+    },
+    "response": {
+      "content-type": "text/html"
+    }
+  }
+}

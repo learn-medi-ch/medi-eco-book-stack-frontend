@@ -1,0 +1,14 @@
+{
+  "schemas": {
+    "actionsSchema": {
+      "$ref": "schemas/actions-schema.json#"
+    }
+  },
+  "settings": {
+    "server": {
+      "hostname": "${BOOK_STACK_HOST}",
+      "port": "${BOOK_STACK_PORT}"
+    },
+    "token": "${BOOK_STACK_TOKEN}"
+  }
+}

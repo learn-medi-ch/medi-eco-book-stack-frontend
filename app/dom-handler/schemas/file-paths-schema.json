@@ -1,0 +1,11 @@
+{
+  "/favicon.ico": {
+    "contentType": "image/x-icon"
+  },
+  "/index.html": {
+    "contentType": "text/html"
+  },
+  "/main.mjs": {
+    "contentType": "application/javascript"
+  }
+}
