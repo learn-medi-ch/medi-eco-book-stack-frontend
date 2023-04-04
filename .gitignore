@@ -1,0 +1,16 @@
+/*
+!.gitignore
+!LICENSE
+!README.md
+!app/
+app/*
+!app/bin/
+!app/book-stack/
+!app/dom-handler/
+!app/http-request-handler/
+!app/types/
+!app/app.mjs
+!app/config.json
+!app/docker_entrypoint.sh
+!build/
+!example/

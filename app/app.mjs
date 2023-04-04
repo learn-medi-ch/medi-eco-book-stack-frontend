@@ -27,16 +27,11 @@ const resolveRefs = (object, absoluteDirName) => {
      *    "$ref": "../schemas/backend.json#actions"
      * }
      */
-    console.log(object);
     for (const [key, property] of Object.entries(object)) {
         if (property !== null && typeof property === 'object') {
-            console.log(property);
-            console.log(property.hasOwnProperty("$ref"))
             if (property.hasOwnProperty("$ref")) {
-                console.log(property);
                 if (property["$ref"].startsWith("#") === false) {
                     const ref = property["$ref"];
-                    console.log(ref);
                     let filePath = "";
                     let propertyParts = [];
                     if (ref.endsWith("#")) {
@@ -60,9 +55,6 @@ const resolveRefs = (object, absoluteDirName) => {
                     continue;
                 }
             }
-            //absoluteDirName = path.join(absoluteDirName, key)
-            //console.log("absolute Dir name")
-            //console.log(absoluteDirName)
             object[key] = resolveRefs(property, absoluteDirName);
         }
     }
@@ -74,10 +66,6 @@ async function app() {
      * @type {MediEcoBookStackFrontendConfig} config
      */
     const config = readFile("./config.json");
-
-    console.log("fileRead");
-    console.log(config.httpRequestHandlerConfig.schemas.actionsSchema);
-
     const server = await FluxEcoNodeHttpServer.new(
         {
             schemas: {
