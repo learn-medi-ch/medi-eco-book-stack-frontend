@@ -1,3 +1,26 @@
 {
-
+  "renderPage": {
+    "parameters": {
+      "pageId": {
+        "in": "query",
+        "type": "number"
+      }
+    }
+  },
+  "renderBook": {
+    "parameters": {
+      "bookId": {
+        "in": "query",
+        "type": "number"
+      }
+    }
+  },
+  "renderShelve": {
+    "parameters": {
+      "shelveId": {
+        "in": "query",
+        "type": "number"
+      }
+    }
+  }
 }

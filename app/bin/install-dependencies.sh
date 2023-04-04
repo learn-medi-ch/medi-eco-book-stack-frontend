@@ -9,3 +9,4 @@ installDependency() {
 }
 
 installDependency flux-eco-node-http-server https://github.com/flux-eco/flux-eco-node-http-server/archive/refs/tags/v2023-03-22-1.tar.gz
+installDependency flux-eco https://github.com/flux-eco/flux-eco/archive/refs/tags/v2023-03-06-2.tar.gz
