@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import {FluxEcoNodeHttpServer} from "../../flux-eco-node-http-server/app/FluxEcoNodeHttpServer.mjs";
+import {FluxEcoNodeHttpServer} from "./flux-eco-node-http-server/FluxEcoNodeHttpServer.mjs";
 import Api from "./http-request-handler/Api.mjs";
 
 const readFile = (filePath) => {
