@@ -10,7 +10,7 @@ const readFile = (filePath) => {
     const absoluteDirName = path.dirname(absoluteFilePath);
 
     const httpServerConfigBuffer = fs.readFileSync(filePath, 'utf-8');
-    const object = JSON.parse(httpServerConfigBuffer.toString());
+    const object = resolveEnvVariables(JSON.parse(httpServerConfigBuffer.toString()));
     return resolveRefs(object, absoluteDirName);
 }
 
@@ -61,23 +61,44 @@ const resolveRefs = (object, absoluteDirName) => {
     return object;
 }
 
+const resolveEnvVariables = (object) => {
+    if (object === null) {
+        return object;
+    }
+    if (typeof object !== 'object') {
+        return object;
+    }
+    const resolved = Array.isArray(object) ? [] : {};
+    for (const [key, value] of Object.entries(object)) {
+        if (typeof value === 'string' && value.startsWith('$')) {
+            const envVar = value.slice(1);
+            const envVarName = envVar.replace(/[{}]/g, '');
+            resolved[key] = process.env[envVarName];
+        } else {
+            resolved[key] = resolveEnvVariables(value);
+        }
+    }
+    return resolved;
+}
+
 async function app() {
     /**
      * @type {MediEcoBookStackFrontendConfig} config
      */
     const config = readFile("./config.json");
+    const settings = config.settings;
     const server = await FluxEcoNodeHttpServer.new(
         {
             schemas: {
-                actionsSchema: config.httpRequestHandlerConfig.schemas.actionsSchema,
-                filePathsSchema: config.domHandlerConfig.schemas.filePathsSchema
+                actionsSchema: settings.httpRequestHandlerConfig.schemas.actionsSchema,
+                filePathsSchema: settings.domHandlerConfig.schemas.filePathsSchema
             },
             settings: {
-                host: config.httpServer.host,
-                port: config.httpServer.port
+                host: settings.httpServer.host,
+                port: settings.httpServer.port
             }
         },
-        Api.new(config.httpRequestHandlerConfig)
+        Api.new(settings.httpRequestHandlerConfig)
     )
     // Start the server
     server.start();

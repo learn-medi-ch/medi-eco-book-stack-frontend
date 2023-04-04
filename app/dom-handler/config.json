@@ -1,8 +1,7 @@
 {
   "schemas": {
-
     "filePathsSchema": {
-
+      "$ref": "/schemas/file-paths-schema.json"
     }
   }
 }

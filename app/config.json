@@ -1,12 +1,14 @@
 {
-  "domHandlerConfig": {
-    "$ref": "/dom-handler/config.json"
-  },
-  "httpRequestHandlerConfig": {
-    "$ref": "/http-request-handler/config.json"
-  },
-  "httpServer": {
-    "port": 3100,
-    "host": "0.0.0.0"
+  "settings": {
+    "domHandlerConfig": {
+      "$ref": "/dom-handler/config.json"
+    },
+    "httpRequestHandlerConfig": {
+      "$ref": "/http-request-handler/config.json"
+    },
+    "httpServer": {
+      "port": 3100,
+      "host": "0.0.0.0"
+    }
   }
 }

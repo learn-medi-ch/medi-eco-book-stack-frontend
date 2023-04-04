@@ -8,7 +8,7 @@ export default class Api {
     #config;
 
     constructor(config) {
-        this.#config = this.#resolveEnvVariables(config)
+        this.#config = config
     }
 
     static new(config) {
@@ -17,9 +17,10 @@ export default class Api {
 
     async readPageHtml({pageId}) {
         const {server, token} = this.#config.settings.bookstackConfig.settings;
-        const {actions} = this.#config.settings.bookstackConfig.schemas.actionSchemas;
-        let url = actions.readPageExportHtml.path;
-        url = url.replace("{" + actions.readPageExportHtml.parameters.id.name + "}", pageId);
+        /** @type {BookStackSchemasActionsSchema} actionsSchema */
+        const actionsSchema = this.#config.settings.bookstackConfig.schemas.actionsSchema;
+        let url = actionsSchema.readPageExportHtml.path;
+        url = url.replace("{" + actionsSchema.readPageExportHtml.parameters.id.name + "}", pageId);
 
         const options = this.#createOptions(server, url, token)
 
@@ -28,9 +29,12 @@ export default class Api {
 
     async readBookHtml({bookId}) {
         const {server, token} = this.#config.settings.bookstackConfig.settings;
-        const {actions} = this.#config.settings.bookstackConfig.schemas.actionSchemas;
-        let url = actions.readBookExportHtml.path;
-        url = url.replace("{" + actions.readBookExportHtml.parameters.id.name + "}", bookId);
+        console.log(this.#config.schemas);
+
+        /** @type BookStackSchemasActionsSchema */
+        const actionsSchemas = this.#config.settings.bookstackConfig.schemas.actionsSchema;
+        let url = actionsSchemas.readBookExportHtml.path;
+        url = url.replace("{" + actionsSchemas.readBookExportHtml.parameters.id.name + "}", bookId);
 
         const options = this.#createOptions(server, url, token)
         const book = await(this.readBook({bookId}));
@@ -162,25 +166,5 @@ export default class Api {
                 'Authorization': 'Token ' + token
             }
         }
-    }
-
-    #resolveEnvVariables(object) {
-        if (object === null) {
-            return object;
-        }
-        if (typeof object !== 'object') {
-            return object;
-        }
-        const resolved = Array.isArray(object) ? [] : {};
-        for (const [key, value] of Object.entries(object)) {
-            if (typeof value === 'string' && value.startsWith('$')) {
-                const envVar = value.slice(1);
-                const envVarName = envVar.replace(/[{}]/g, '');
-                resolved[key] = process.env[envVarName];
-            } else {
-                resolved[key] = this.#resolveEnvVariables(value);
-            }
-        }
-        return resolved;
     }
 }
