@@ -47,9 +47,9 @@ export default class Api {
      */
     async readBook({bookId}) {
         const {server, token} = this.#config.settings.bookstackConfig.settings;
-        const {actions} = this.#config.settings.bookstackConfig.schemas.actionSchemas;
-        let url = actions.readBook.path;
-        url = url.replace("{" + actions.readBook.parameters.id.name + "}", bookId);
+        const actionsSchema = this.#config.settings.bookstackConfig.schemas.actionsSchema;
+        let url = actionsSchema.readBook.path;
+        url = url.replace("{" + actionsSchema.readBook.parameters.id.name + "}", bookId);
 
         const options = this.#createOptions(server, url, token)
         return await (JSON.parse(await this.#handleRequest(options)));
@@ -61,9 +61,9 @@ export default class Api {
      */
     async readShelve({shelveId}) {
         const {server, token} = this.#config.settings.bookstackConfig.settings;
-        const actions = this.#config.settings.bookstackConfig.schemas.actionSchemas;
-        let url = actions.readShelve.path;
-        url = url.replace("{" + actions.readShelve.parameters.id.name + "}", shelveId);
+        const actionsSchema = this.#config.settings.bookstackConfig.schemas.actionsSchema;
+        let url = actionsSchema.readShelve.path;
+        url = url.replace("{" + actionsSchema.readShelve.parameters.id.name + "}", shelveId);
 
         const options = this.#createOptions(server, url, token)
         return await (JSON.parse(await this.#handleRequest(options)));

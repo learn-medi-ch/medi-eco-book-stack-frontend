@@ -6,12 +6,15 @@ import {FluxEcoNodeHttpServer} from "../../flux-eco-node-http-server/app/FluxEco
 import Api from "./http-request-handler/Api.mjs";
 
 const readFile = (filePath) => {
+    const absoluteFilePath = path.resolve(filePath);
+    const absoluteDirName = path.dirname(absoluteFilePath);
+
     const httpServerConfigBuffer = fs.readFileSync(filePath, 'utf-8');
     const object = JSON.parse(httpServerConfigBuffer.toString());
-    return resolveRefs(object, "./");
+    return resolveRefs(object, absoluteDirName);
 }
 
-const resolveRefs = (object, objectPath) => {
+const resolveRefs = (object, absoluteDirName) => {
     if (object === null) {
         return object;
     }
@@ -33,15 +36,20 @@ const resolveRefs = (object, objectPath) => {
                 console.log(property);
                 if (property["$ref"].startsWith("#") === false) {
                     const ref = property["$ref"];
-                    const refParts = ref.split("#");
-
-                    const referencedJsonBuffer = fs.readFileSync(path.join(objectPath, refParts[0]));
-                    const referencedJson = JSON.parse(referencedJsonBuffer.toString());
-
-                    const propertyPath = refParts[1].split("/");
-
+                    console.log(ref);
+                    let filePath = "";
+                    let propertyParts = [];
+                    if (ref.endsWith("#")) {
+                        const refParts = ref.split("#");
+                        filePath = refParts[0];
+                        propertyParts = refParts[1];
+                    } else {
+                        filePath = ref;
+                    }
+                    const absoluteFilePath = path.resolve(path.join(absoluteDirName, filePath));
+                    const referencedJson = readFile(absoluteFilePath)
                     let referencedValue = referencedJson;
-                    propertyPath.forEach(propertyName => {
+                    propertyParts.forEach(propertyName => {
                         referencedValue = referencedValue[propertyName];
                     });
                     if (referencedValue) {
@@ -52,13 +60,11 @@ const resolveRefs = (object, objectPath) => {
                     continue;
                 }
             }
-            if (objectPath) {
-
-                object[key] = resolveRefs(property, objectPath);
-            }
-
+            //absoluteDirName = path.join(absoluteDirName, key)
+            //console.log("absolute Dir name")
+            //console.log(absoluteDirName)
+            object[key] = resolveRefs(property, absoluteDirName);
         }
-
     }
     return object;
 }
@@ -67,9 +73,10 @@ async function app() {
     /**
      * @type {MediEcoBookStackFrontendConfig} config
      */
-    const config = resolveRefs(readFile("./config.json"));
+    const config = readFile("./config.json");
 
-    console.log(config);
+    console.log("fileRead");
+    console.log(config.httpRequestHandlerConfig.schemas.actionsSchema);
 
     const server = await FluxEcoNodeHttpServer.new(
         {

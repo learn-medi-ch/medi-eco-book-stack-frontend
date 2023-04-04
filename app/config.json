@@ -1,9 +1,9 @@
 {
   "domHandlerConfig": {
-    "$ref": "dom-handler/config.json#"
+    "$ref": "/dom-handler/config.json"
   },
   "httpRequestHandlerConfig": {
-    "$ref": "http-request-handler/config.json#"
+    "$ref": "/http-request-handler/config.json"
   },
   "httpServer": {
     "port": 3100,

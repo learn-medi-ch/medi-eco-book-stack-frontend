@@ -1,7 +1,7 @@
 {
   "schemas": {
     "actionsSchema": {
-      "$ref": "schemas/actions-schema.json#"
+      "$ref": "./schemas/actions-schema.json"
     }
   },
   "settings": {
