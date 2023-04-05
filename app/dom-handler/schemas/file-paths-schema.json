@@ -1,11 +1,14 @@
 {
   "/favicon.ico": {
+    "pathType": "file",
     "contentType": "image/x-icon"
   },
   "/index.html": {
+    "pathType": "file",
     "contentType": "text/html"
   },
   "/main.mjs": {
+    "pathType": "file",
     "contentType": "application/javascript"
   }
 }
