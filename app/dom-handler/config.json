@@ -1,7 +1,15 @@
 {
   "schemas": {
+    "actionsSchema": {
+      "$ref": "/schemas/actions-schema.json"
+    },
     "filePathsSchema": {
       "$ref": "/schemas/file-paths-schema.json"
+    }
+  },
+  "settings": {
+    "requestHandlerActionsSchema": {
+      "$link": "/api/readActionsSchema"
     }
   }
 }

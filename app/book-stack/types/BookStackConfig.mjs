@@ -14,7 +14,7 @@
  * @property {FluxEcoActionSchema} readPageExportHtml
  * @property {FluxEcoActionSchema} readBookExportHtml
  * @property {FluxEcoActionSchema} readBook
- * @property {FluxEcoActionSchema} readShelve
+ * @property {FluxEcoActionSchema} readShelf
  */
 
 /**

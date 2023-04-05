@@ -6,11 +6,14 @@
 
 /**
  * @typedef {Object} MediEcoBookStackFrontendHttpRequestHandlerSchemas
- * @property {MediEcoBookStackFrontendHttpRequestHandlerActionsSchemas} actionsSchema
+ * @property {MediEcoBookStackFrontendHttpRequestHandlerActionsSchema} actionsSchema
  */
 
 /**
- * @typedef {Object} MediEcoBookStackFrontendHttpRequestHandlerActionsSchemas
+ * @typedef {Object} MediEcoBookStackFrontendHttpRequestHandlerActionsSchema
+ * @property {FluxEcoActionSchema} readPageHtml
+ * @property {FluxEcoActionSchema} readBookHtml
+ * @property {FluxEcoActionSchema} readShelf
  */
 
 /**

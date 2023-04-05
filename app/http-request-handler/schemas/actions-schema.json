@@ -1,4 +1,7 @@
 {
+  "readActionsSchema": {
+    "path": "/api/flux-ilias-rest-api-proxy/medi-wissen/readActionsSchema"
+  },
   "readPageHtml": {
     "path": "/api/flux-ilias-rest-api-proxy/medi-wissen/readPageHtml/pageId/{pageId}",
     "parameters": {

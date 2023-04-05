@@ -10,5 +10,17 @@
   "/main.mjs": {
     "pathType": "file",
     "contentType": "application/javascript"
+  },
+  "/Api.mjs": {
+    "pathType": "file",
+    "contentType": "application/javascript"
+  },
+  "/schemas/actions-schema.json": {
+    "pathType": "file",
+    "contentType": "application/json"
+  },
+  "/schemas/file-paths-schema.json": {
+    "pathType": "file",
+    "contentType": "application/json"
   }
 }

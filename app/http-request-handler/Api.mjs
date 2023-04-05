@@ -15,6 +15,10 @@ export default class Api {
         return new Api(config)
     }
 
+    async readActionsSchema() {
+        return JSON.stringify(this.#config.schemas.actionsSchema);
+    }
+
     async readPageHtml({pageId}) {
         const {server, token} = this.#config.settings.bookstackConfig.settings;
         /** @type {BookStackSchemasActionsSchema} actionsSchema */
@@ -60,14 +64,14 @@ export default class Api {
     }
 
     /**
-     * @param shelveId
-     * @return {Promise<{Shelve}>}
+     * @param shelfId
+     * @return {Promise<{Shelf}>}
      */
-    async readShelve({shelveId}) {
+    async readShelf({shelfId}) {
         const {server, token} = this.#config.settings.bookstackConfig.settings;
         const actionsSchema = this.#config.settings.bookstackConfig.schemas.actionsSchema;
         let url = actionsSchema.readShelve.path;
-        url = url.replace("{" + actionsSchema.readShelve.parameters.id.name + "}", shelveId);
+        url = url.replace("{" + actionsSchema.readShelf.parameters.id.name + "}", shelfId);
 
         const options = this.#createOptions(server, url, token)
         return await (JSON.parse(await this.#handleRequest(options)));
